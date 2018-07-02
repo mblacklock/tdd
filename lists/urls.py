@@ -21,5 +21,4 @@ from lists import views
 urlpatterns = [
     path('<list_id>/', views.view_list,name='view_list'),
     path('new', views.new_list, name='new_list'),
-    path('<list_id>/add-item', views.add_item, name='add_item'),
 ]
