@@ -25,7 +25,7 @@ SECRET_KEY = '!rtwb-snc_7t@mk2=mq=3nvabj%tah7#+x8vb*@$uba+09ffhd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mblacklock.pythonanywhere.com']
 
 
 # Application definition
