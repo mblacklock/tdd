@@ -20,7 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 ##### TURN ON SECURITY FOR PRODUCTION #####
-if 'DJANGO_DEBUG_FALSE' in os.environ:  
+if 'DJANGO_DEBUG_FALSE' in os.environ:
+    from dotenv import load_dotenv
+    project_folder = os.path.expanduser('~/tdd')
+    load_dotenv(os.path.join(project_folder, '.env'))
     DEBUG = False
     SECRET_KEY = os.environ['DJANGO_SECRET_KEY']  
     ALLOWED_HOSTS = [os.environ['SITENAME']]  
