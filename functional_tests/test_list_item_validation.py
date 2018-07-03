@@ -56,7 +56,6 @@ class ItemValidationTest(FunctionalTest):
             "You've already got this in your list"
         ))
 
-        # https://www.obeythetestinggoat.com/book/chapter_prettification.html
         # http://www.grokcode.com/746/dear-python-why-are-you-so-ugly/
 
     def test_error_messages_are_cleared_on_input(self):
@@ -79,3 +78,27 @@ class ItemValidationTest(FunctionalTest):
         self.wait_for(lambda: self.assertFalse(
             self.get_error_element().is_displayed()  
         ))
+
+    def test_error_messages_are_cleared_on_click(self):
+        # Edith starts a list and causes a validation error:
+        self.browser.get(self.live_server_url)
+        self.get_item_input_box().send_keys('Banter too thick')
+        self.get_item_input_box().send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Banter too thick')
+        self.get_item_input_box().send_keys('Banter too thick')
+        self.get_item_input_box().send_keys(Keys.ENTER)
+
+        self.wait_for(lambda: self.assertTrue(  
+            self.get_error_element().is_displayed()  
+        ))
+
+        # She clicks in the input box to clear the error
+        self.get_item_input_box().click()
+
+        # She is pleased to see that the error message disappears
+        self.wait_for(lambda: self.assertFalse(
+            self.get_error_element().is_displayed()  
+        ))
+
+
+        #print('https://www.obeythetestinggoat.com/book/chapter_javascript.html')
